@@ -78,8 +78,6 @@ function storeOperator(){
 function clear(){
     let bob = document.getElementById("display");
     bob.innerText = "0";
-    queue = [];
-    partialEval = [];
     opCount = 0;
     prevDisplayVal = 0;
     displayVal = 0;
