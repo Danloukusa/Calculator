@@ -47,6 +47,8 @@ function fillCalculator(){
 }
 let operand = "";
 function evaluate(){
+    if(operand == "")
+        return;
     let screen = document.getElementById("display");
         screen.innerText = operate(prevDisplayVal, operand, displayVal);
 }
@@ -70,7 +72,7 @@ function storeOperator(){
         bob.innerText = "0";
         displayVal = 0;
     }
-
+    resetScreen = 0;
 }
 
 function clear(){
@@ -86,11 +88,17 @@ function clear(){
 let opCount = 0;
 let prevDisplayVal = 0;
 let displayVal = 0;
+let resetScreen = 0;
 function putOnScreen(){
     let screen = document.getElementById("display");
     if(opCount >= 1)
     {
-        screen.innerText = "";
+        if (resetScreen < 1)
+        {
+            screen.innerText = "";
+            resetScreen = 1;
+        }
+
     }
     
         if(this.id == 0)
