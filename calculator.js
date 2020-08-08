@@ -38,13 +38,71 @@ function fillCalculator(){
         element.addEventListener("click", putOnScreen);
         box.appendChild(element);
     }
+    document.getElementById("clear").addEventListener("click", clear);
+    document.getElementById("+").addEventListener("click", storeOperator);
+    document.getElementById("-").addEventListener("click", storeOperator);
+    document.getElementById("*").addEventListener("click", storeOperator);
+    document.getElementById("/").addEventListener("click", storeOperator);
+    document.getElementById("=").addEventListener("click", evaluate);
+}
+let operand = "";
+function evaluate(){
+    let screen = document.getElementById("display");
+        screen.innerText = operate(prevDisplayVal, operand, displayVal);
 }
 
-let displayVal = "";
+function storeOperator(){
+    let bob = document.getElementById("display");
+    if(opCount >= 1)
+    {
+        bob.innerText = operate(prevDisplayVal, operand, displayVal);
+        prevDisplayVal = Number(bob.innerText);
+        displayVal = 0;
+        operand = this.id;
+        opCount += 1;
+    }
+    if(opCount == 0)
+    {
+        operand = this.id;
+        prevDisplayVal = displayVal;
+    
+        opCount += 1;
+        bob.innerText = "0";
+        displayVal = 0;
+    }
+
+}
+
+function clear(){
+    let bob = document.getElementById("display");
+    bob.innerText = "0";
+    queue = [];
+    partialEval = [];
+    opCount = 0;
+    prevDisplayVal = 0;
+    displayVal = 0;
+}
+
+let opCount = 0;
+let prevDisplayVal = 0;
+let displayVal = 0;
 function putOnScreen(){
     let screen = document.getElementById("display");
-    screen.innerText += this.id;
-    displayVal = screen.innerText;
+    if(opCount >= 1)
+    {
+        screen.innerText = "";
+    }
+    
+        if(this.id == 0)
+        {
+            if(displayVal == 0)
+                return ;
+        }
+            screen.innerText += this.id;
+    
+        displayVal = Number(screen.innerText);
+
+
 }
 
 fillCalculator();
