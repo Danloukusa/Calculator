@@ -138,7 +138,6 @@ function evaluate(){
         opCount = 0;
         a = result;
         b = "dummy";
-        result = "dummy";
         op = "dummy";
         resetScreen = 0;
         return;
@@ -221,14 +220,17 @@ function backSpace(){
     if (screen.innerText == "0")
         return;
 
+    if(screen.innerText == result)
+        return;
+
     let newString;
     newString = screen.innerText.substring(0, screen.innerText.length - 1);
     screen.innerText = newString;
     if(opCount < 1)
-        a = screen.innerText;
+        a = Number(newString);
     else
     {
-        b = screen.innerText;
+        b = Number(newString);
     }
 }
 
