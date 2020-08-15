@@ -1,5 +1,5 @@
 body{
-    background-color: white;
+    background-color: darkslategray;
 }
 
 #gridContainer{
@@ -23,6 +23,13 @@ body{
     background-color: grey;
 }
 
+.operand{
+    color: blue;
+}
+
+.Number{
+    color: black;
+}
 .operand:hover {
     background-color: orange;
 }
